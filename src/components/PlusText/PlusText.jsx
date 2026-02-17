@@ -3,7 +3,7 @@ import './PlusText.css';
 function PlusText({
   line1 = '',
   line2 = '',
-  heartSrc = '/image/heart.png',
+  heartSrc = `${process.env.PUBLIC_URL || ''}/image/heart.png`,
 }) {
   return (
     <section className="plus-text">

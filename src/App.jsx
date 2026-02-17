@@ -10,6 +10,8 @@ import GuestForm from "./components/GuestForm/GuestForm";
 import BackgroundHearts from "./components/BackgroundHearts/BackgroundHearts";
 import ScrollReveal from "./components/ScrollReveal/ScrollReveal";
 
+const publicUrl = process.env.PUBLIC_URL || '';
+
 function App() {
   return (
     <div className="app">
@@ -18,12 +20,12 @@ function App() {
       <ScrollReveal>
       <PhotoPair
         leftPhoto={{
-          src: "/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg",
+          src: `${publicUrl}/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg`,
           alt: "Первая фотография",
           title: "Первая фотография",
         }}
         rightPhoto={{
-          src: "/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg",
+          src: `${publicUrl}/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg`,
           alt: "Вторая фотография",
           title: "Вторая фотография",
         }}
@@ -33,7 +35,7 @@ function App() {
       <PlusText
         line1="Тигран + Григорян"
         line2="="
-        heartSrc="/image/heart.png"
+        heartSrc={`${publicUrl}/image/heart.png`}
       />
       </ScrollReveal>
       <ScrollReveal delay={60}>
@@ -44,7 +46,7 @@ function App() {
       <ScrollReveal direction="right">
       <PhotoSingle
         photo={{
-          src: "/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg",
+          src: `${publicUrl}/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg`,
           alt: "Совместное фото",
           title: "Все начинается с любви",
         }}
@@ -58,7 +60,7 @@ function App() {
       <MainText text="25 июля 2026 года" />
       <PhotoSingle
         photo={{
-          src: "/image/calendar.png",
+          src: `${publicUrl}/image/calendar.png`,
           alt: "Календарь",
         }}
         withFrame={false}
@@ -66,7 +68,7 @@ function App() {
       </ScrollReveal>
       <ScrollReveal direction="right">
       <LocationCard
-        imageSrc="/image/besedka.png"
+        imageSrc={`${publicUrl}/image/besedka.png`}
         imageAlt="Место проведения"
         address="Ереван, Гюбилькяна, д. 67"
         addressLink="https://maps.google.com/?q=ул.+Примерная,+д.+123"
@@ -89,7 +91,7 @@ function App() {
       <ScrollReveal direction="right" delay={200}>
       <PhotoSingle
         photo={{
-          src: "/image/color.png",
+          src: `${publicUrl}/image/color.png`,
           alt: "Календарь",
         }}
         withFrame={false}
@@ -115,7 +117,7 @@ function App() {
       <MainText text="Будем вас ждать!" />
       <PhotoSingle
         photo={{
-          src: "/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg",
+          src: `${publicUrl}/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg`,
           alt: "Совместное фото",
           title: "С любовью!",
           description: 'Миша и Лера'

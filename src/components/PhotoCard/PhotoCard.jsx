@@ -5,7 +5,7 @@ function PhotoCard({
   photoAlt = '',
   title,
   description,
-  frameSrc = '/image/image.png',
+  frameSrc = `${process.env.PUBLIC_URL || ''}/image/image.png`,
   isLandscape = false,
 }) {
   return (
