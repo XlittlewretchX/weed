@@ -1,0 +1,72 @@
+.photo-single {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+}
+
+.photo-single__item {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-single__item:hover {
+  transform: scale(1.03);
+}
+
+/* Стили для простого фото без рамки */
+.photo-single__simple {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
+}
+
+.photo-single__image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  object-fit: contain;
+}
+
+.photo-single__caption {
+  margin-top: 16px;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.photo-single__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.photo-single__description {
+  font-size: 14px;
+  color: #555555;
+}
+
+@media (max-width: 600px) {
+  .photo-single {
+    padding: 24px 12px;
+  }
+
+  .photo-single__image {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+
+  .photo-single__title {
+    font-size: 17px;
+  }
+
+  .photo-single__description {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+

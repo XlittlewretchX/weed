@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# Wedding Invite (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Одностраничное React-приложение — приглашение на свадьбу: фотографии, текст, место проведения, расписание, анкета гостя и ссылка на чат в Telegram.
 
-## Available Scripts
+## Стек
 
-In the project directory, you can run:
+- **React** (Create React App)
+- **CSS** без UI-библиотек
 
-### `npm start`
+## Запуск проекта
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Приложение откроется по адресу [http://localhost:3000](http://localhost:3000).
 
-### `npm test`
+## Структура страницы
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Пара фотографий (PhotoPair)
+2. Имена и сердечко (PlusText)
+3. Блоки текста (MainText, Text)
+4. Одиночные фото с рамкой или без (PhotoSingle)
+5. Дата и календарь
+6. Карточка места проведения (LocationCard) с адресом и ссылкой на карты
+7. Расписание дня (Schedule)
+8. Дресс-код и палитра
+9. Кнопка перехода в чат Telegram (TelegramButton)
+10. Анкета гостя (GuestForm)
+11. Финальное фото и подпись
 
-### `npm run build`
+По мере прокрутки блоки плавно появляются (анимация ScrollReveal). На фоне отображаются декоративные сердечки (BackgroundHearts).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Компоненты
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Компонент | Описание |
+|-----------|----------|
+| **PhotoCard** | Карточка с рамкой, фото и подписью (title, description). Поддержка горизонтальных фото (`isLandscape`). |
+| **PhotoPair** | Две перекрывающиеся PhotoCard с лёгким наклоном. |
+| **PhotoSingle** | Одна фотография: с рамкой (`withFrame={true}`) или просто изображение (`withFrame={false}`). |
+| **PlusText** | Две строки текста и изображение (например, имена + «=» + сердечко). |
+| **MainText** | Крупный заголовок. |
+| **Text** | Обычный текст с переносом по ширине. |
+| **LocationCard** | Карточка места: заголовок, фото, адрес со ссылкой. Анимация при наведении. |
+| **Schedule** | Список «время — описание» в виде карточки. |
+| **TelegramButton** | Кнопка-ссылка в Telegram (иконка + текст). Проп `href` — URL или username. |
+| **GuestForm** | Анкета: имя, посещение, количество гостей, предпочтения по алкоголю (чекбоксы-сердечки), комментарий. Отправка через Formspree. |
+| **ScrollReveal** | Обёртка для анимации появления при скролле. Пропы: `delay`, `direction` (`up` \| `left` \| `right`). |
+| **BackgroundHearts** | Фоновый слой со случайно разбросанными сердечками. Проп `count`. |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Анкета гостя и приём ответов
 
-### `npm run eject`
+Ответы анкеты уходят через [Formspree](https://formspree.io) (без своего бэкенда).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Зарегистрируйтесь на [formspree.io](https://formspree.io).
+2. Создайте форму и скопируйте адрес вида `https://formspree.io/f/xxxxxxxx`.
+3. В `App.jsx` в компоненте `GuestForm` укажите этот адрес в пропе `action`:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```jsx
+<GuestForm
+  action="https://formspree.io/f/ваш_id"
+  title="Анкета гостя"
+  submitLabel="Отправить"
+/>
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Ответы будут приходить на email, привязанный к аккаунту Formspree.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Статика (картинки)
 
-## Learn More
+Изображения кладите в `public/image/` и подключайте так:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```jsx
+src="/image/имя_файла.jpg"
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Адаптив и UX/UI
 
-### Code Splitting
+- Единый брейкпоинт для мобильных: **600px**.
+- Учтены safe-area (вырезы, островки) на телефонах.
+- Кнопки и чекбоксы не меньше 44–48px по высоте для удобного нажатия.
+- Размер шрифта в полях ввода не меньше 16px (избегаем автозума на iOS).
+- Поддержка `prefers-reduced-motion` для анимаций.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Продакшн-сборка
 
-### Analyzing the Bundle Size
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Результат в папке `build` — можно выкладывать на любой статичный хостинг.
 
-### Making a Progressive Web App
+## Деплой на GitHub Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. **Укажите свой GitHub-username** в `package.json`: замените `YOUR_USERNAME` в поле `homepage` на ваш логин (например, `"homepage": "https://johndoe.github.io/weed"`).
 
-### Advanced Configuration
+2. **Создайте репозиторий** на GitHub и запушьте проект (если ещё не сделано):
+   ```bash
+   git remote add origin https://github.com/YOUR_USERNAME/weed.git
+   git push -u origin main
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. **Опубликуйте сайт**:
+   ```bash
+   npm run deploy
+   ```
+   Скрипт соберёт проект и зальёт содержимое папки `build` в ветку `gh-pages`. GitHub начнёт отдавать сайт по адресу **https://YOUR_USERNAME.github.io/weed/** (иногда нужно подождать 1–2 минуты и при необходимости включить Pages в настройках репозитория: Settings → Pages → Source: Deploy from branch → ветка `gh-pages`).
 
-### Deployment
+При следующих изменениях достаточно снова выполнить `npm run deploy`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Скрипты (Create React App)
 
-### `npm run build` fails to minify
+- `npm start` — режим разработки с hot reload.
+- `npm run build` — сборка для продакшена.
+- `npm test` — запуск тестов.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Подробнее: [документация Create React App](https://create-react-app.dev/docs/getting-started).

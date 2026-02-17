@@ -1,3 +1,25 @@
+.app {
+  position: relative;
+  overflow-x: hidden;
+}
+
+@media (min-width: 601px) {
+  .app {
+    min-height: 100vh;
+  }
+}
+
+.app__content {
+  position: relative;
+  z-index: 1;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 .App {
   text-align: center;
 }
@@ -34,5 +56,31 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.calendar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.calendarPhoto {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .calendar {
+    padding: 0 12px;
+  }
+
+  .calendarPhoto {
+    max-width: 280px;
   }
 }

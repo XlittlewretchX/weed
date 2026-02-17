@@ -1,0 +1,59 @@
+.plus-text {
+  max-width: 960px;
+  margin: 40px auto 16px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.plus-text__line {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.plus-text__line--names {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+
+.plus-text__line--equals {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.plus-text__heart-image {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+}
+
+.plus-text__line--heart{
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .plus-text {
+    margin: 24px auto 12px;
+    padding: 0 16px;
+  }
+
+  .plus-text__line--names {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .plus-text__line--equals {
+    font-size: 32px;
+  }
+
+  .plus-text__subtitle {
+    font-size: 16px;
+  }
+
+  .plus-text__heart-image {
+    max-width: 120px;
+  }
+}
+

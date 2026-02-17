@@ -1,0 +1,31 @@
+.background-hearts {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.background-hearts__heart {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  font-size: var(--size);
+  color: #c41e3a;
+  opacity: var(--opacity);
+  transform: translate(-50%, -50%) rotate(var(--rotation));
+  line-height: 1;
+  user-select: none;
+  animation: background-hearts-float 8s ease-in-out var(--delay) infinite;
+}
+
+@keyframes background-hearts-float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--rotation));
+  }
+  50% {
+    transform: translate(-50%, calc(-50% - 8px)) rotate(var(--rotation));
+  }
+}
