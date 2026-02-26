@@ -1,0 +1,54 @@
+.countdown-timer {
+    width: min(100%, 720px);
+    margin: 50px auto 50px;
+    padding: 0 12px;
+  }
+  
+  .countdown-timer__row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 12px;
+  }
+  
+  .countdown-timer__row--values {
+    margin-bottom: 8px;
+  }
+  
+  .countdown-timer__cell {
+    text-align: center;
+  }
+  
+  .countdown-timer__value {
+    font-size: clamp(28px, 7vw, 54px);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--color-accent-deep);
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .countdown-timer__label {
+    font-size: clamp(21px, 3.5vw, 34px);
+    color: var(--color-text-secondary);
+    line-height: 1.15;
+  }
+  
+  @media (max-width: 600px) {
+    .countdown-timer {
+      width: calc(100% - 20px);
+      margin: 62px 10px 60px;
+      padding: 0 4px;
+    }
+  
+    .countdown-timer__row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+  
+    .countdown-timer__value {
+      font-size: clamp(24px, 8.8vw, 36px);
+    }
+  
+    .countdown-timer__label {
+      font-size: clamp(15px, 4.2vw, 20px);
+    }
+  }

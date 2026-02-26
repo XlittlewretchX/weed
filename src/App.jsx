@@ -10,6 +10,7 @@ import GuestForm from "./components/GuestForm/GuestForm";
 import BackgroundHearts from "./components/BackgroundHearts/BackgroundHearts";
 import ScrollReveal from "./components/ScrollReveal/ScrollReveal";
 import PhotoCard from "./components/PhotoCard/PhotoCard";
+import CountdownTimer from "./components/CountdownTimer/CountdownTimer";
 import "./App.css";
 
 const publicUrl = process.env.PUBLIC_URL || "";
@@ -156,6 +157,11 @@ function App() {
             title="С любовью!"
             description="Миша и Лера"
           />
+        </ScrollReveal>
+        <ScrollReveal direction="top" cascade cascadeStep={110} delay={20} duration={780} distance={72}>
+          <MainText text="Праздник любви через:" />
+          <CountdownTimer />
+          <Text text="С любовью Лера и Миша" />
         </ScrollReveal>
       </div>
     </div>
