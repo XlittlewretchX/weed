@@ -5,6 +5,9 @@ function TelegramButton({
   children = 'Написать в Telegram',
 }) {
   const url = href?.startsWith('http') ? href : `https://t.me/${href?.replace(/^@/, '')}`;
+  const ariaLabel = typeof children === 'string'
+    ? `${children} (откроется в новой вкладке)`
+    : 'Открыть чат в Telegram (откроется в новой вкладке)';
 
   if (!url || url === 'https://t.me/') {
     return null;
@@ -17,6 +20,7 @@ function TelegramButton({
         target="_blank"
         rel="noopener noreferrer"
         className="telegram-button"
+        aria-label={ariaLabel}
       >
         <span className="telegram-button__icon" aria-hidden>
           <svg viewBox="0 0 24 24" fill="currentColor">

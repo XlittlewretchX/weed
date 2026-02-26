@@ -3,6 +3,47 @@ html {
   box-sizing: border-box;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  min-height: 100%;
+  touch-action: pan-y pinch-zoom;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 232, 224, 0.7) 0%, rgba(255, 232, 224, 0) 42%),
+    radial-gradient(circle at 84% 14%, rgba(229, 214, 244, 0.55) 0%, rgba(229, 214, 244, 0) 44%),
+    linear-gradient(180deg, var(--color-page-bg) 0%, var(--color-page-bg-alt) 100%);
+}
+
+:root {
+  --color-page-bg: #fff8f7;
+  --color-page-bg-alt: #fdf5f8;
+  --color-surface: #fbf3f0;
+  --color-surface-elevated: #fffdfb;
+  --color-surface-soft: #f9f1f6;
+  --color-text-primary: #4f434b;
+  --color-text-secondary: #675a64;
+  --color-text-muted: #8f8390;
+  --color-accent: #b88aa0;
+  --color-accent-strong: #a5768f;
+  --color-accent-deep: #8f667f;
+  --color-accent-soft: rgba(184, 138, 160, 0.12);
+  --color-accent-soft-strong: rgba(184, 138, 160, 0.22);
+  --color-accent-line: rgba(184, 138, 160, 0.35);
+  --color-sage: #8db6a0;
+  --color-sage-deep: #5f8d76;
+  --color-sage-soft: rgba(141, 182, 160, 0.14);
+  --color-danger: #b87a92;
+  --color-danger-deep: #8f586c;
+  --color-danger-soft: rgba(184, 122, 146, 0.14);
+  --color-danger-soft-strong: rgba(184, 122, 146, 0.24);
+  --color-border-soft: rgba(97, 80, 93, 0.14);
+  --color-border-faint: rgba(97, 80, 93, 0.08);
+  --color-shadow-soft: 0 10px 25px rgba(97, 80, 93, 0.16), 0 0 0 1px rgba(97, 80, 93, 0.05);
+  --color-shadow-soft-hover: 0 20px 40px rgba(97, 80, 93, 0.2), 0 0 0 1px rgba(97, 80, 93, 0.1);
+  --color-shadow-image: 0 4px 12px rgba(97, 80, 93, 0.14);
+  --color-shadow-image-hover: 0 8px 20px rgba(97, 80, 93, 0.18);
+  --color-white: #fff;
+  --color-page-background:
+    radial-gradient(circle at 18% 8%, rgba(255, 232, 224, 0.7) 0%, rgba(255, 232, 224, 0) 42%),
+    radial-gradient(circle at 84% 14%, rgba(229, 214, 244, 0.55) 0%, rgba(229, 214, 244, 0) 44%),
+    linear-gradient(180deg, var(--color-page-bg) 0%, var(--color-page-bg-alt) 100%);
 }
 
 *,
@@ -15,6 +56,10 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
+  touch-action: pan-y pinch-zoom;
+  background-color: var(--color-page-bg);
+  background: var(--color-page-background);
+  color: var(--color-text-primary);
   font-family: 'Makan Hati Cyrillic', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -23,6 +68,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: var(--color-page-bg);
+  background: var(--color-page-background);
 }
 
 code {
@@ -34,4 +85,18 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

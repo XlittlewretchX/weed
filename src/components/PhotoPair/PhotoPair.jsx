@@ -13,6 +13,9 @@ function PhotoPair({
           photoAlt={leftPhoto.alt}
           title={leftPhoto.title}
           description={leftPhoto.description}
+          isLandscape={leftPhoto.isLandscape}
+          loading={leftPhoto.loading}
+          decoding={leftPhoto.decoding}
         />
       </div>
       <div className="photo-pair__item photo-pair__item--right">
@@ -21,6 +24,9 @@ function PhotoPair({
           photoAlt={rightPhoto.alt}
           title={rightPhoto.title}
           description={rightPhoto.description}
+          isLandscape={rightPhoto.isLandscape}
+          loading={rightPhoto.loading}
+          decoding={rightPhoto.decoding}
         />
       </div>
     </div>
@@ -28,4 +34,3 @@ function PhotoPair({
 }
 
 export default PhotoPair;
-

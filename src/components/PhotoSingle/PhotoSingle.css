@@ -29,7 +29,7 @@
   max-width: 800px;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--color-shadow-image);
   object-fit: contain;
 }
 
@@ -47,7 +47,7 @@
 
 .photo-single__description {
   font-size: 14px;
-  color: #555555;
+  color: var(--color-text-secondary);
 }
 
 @media (max-width: 600px) {
@@ -69,4 +69,3 @@
     line-height: 1.4;
   }
 }
-

@@ -5,10 +5,28 @@ function PlusText({
   line2 = '',
   heartSrc = `${process.env.PUBLIC_URL || ''}/image/heart.png`,
 }) {
+  const renderedLine1 = typeof line1 === 'string'
+    ? line1.split('+').reduce((acc, part, index, arr) => {
+      acc.push(part);
+      if (index < arr.length - 1) {
+        acc.push(
+          <span
+            key={`plus-${index}`}
+            className="plus-text__line-plus"
+            aria-hidden="true"
+          >
+            {' + '}
+          </span>,
+        );
+      }
+      return acc;
+    }, [])
+    : line1;
+
   return (
     <section className="plus-text">
       <div className="plus-text__line plus-text__line--names">
-        {line1}
+        {renderedLine1}
       </div>
       <div className="plus-text__line plus-text__line--equals">
         {line2}
@@ -17,7 +35,9 @@ function PlusText({
         <img
           className="plus-text__heart-image"
           src={heartSrc}
-          alt="heart"
+          alt=""
+          aria-hidden="true"
+          draggable={false}
         />
       </div>
     </section>
@@ -25,4 +45,3 @@ function PlusText({
 }
 
 export default PlusText;
-

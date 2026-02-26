@@ -18,6 +18,9 @@ function PhotoSingle({
             photoAlt={photo.alt}
             title={photo.title}
             description={photo.description}
+            isLandscape={photo.isLandscape}
+            loading={photo.loading}
+            decoding={photo.decoding}
           />
         </div>
       ) : (
@@ -26,6 +29,8 @@ function PhotoSingle({
             className="photo-single__image"
             src={photo.src}
             alt={photo.alt}
+            loading={photo.loading || 'lazy'}
+            decoding={photo.decoding || 'async'}
           />
           {(photo.title || photo.description) && (
             <div className="photo-single__caption">
@@ -42,4 +47,3 @@ function PhotoSingle({
 }
 
 export default PhotoSingle;
-

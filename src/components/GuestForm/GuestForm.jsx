@@ -11,7 +11,17 @@ function GuestForm({
   const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
   const [errorText, setErrorText] = useState('');
   const [errorType, setErrorType] = useState(null); // 'validation' | 'config' | 'network'
-  const [errorMissing, setErrorMissing] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState({
+    name: false,
+    attending: false,
+    alcohol: false,
+  });
+
+  const errorMissing = [
+    fieldErrors.name ? 'Ваше имя' : null,
+    fieldErrors.attending ? 'Придёте на праздник?' : null,
+    fieldErrors.alcohol ? 'О предпочтениях алкоголя' : null,
+  ].filter(Boolean);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,21 +37,26 @@ function GuestForm({
     const attending = form.attending?.value;
     const alcoholChecked = form.querySelectorAll('input[name="alcohol"]:checked').length;
 
-    const missing = [];
-    if (!name) missing.push('Ваше имя');
-    if (!attending) missing.push('Придёте на праздник?');
-    if (alcoholChecked === 0) missing.push('О предпочтениях алкоголя');
+    const nextFieldErrors = {
+      name: !name,
+      attending: !attending,
+      alcohol: alcoholChecked === 0,
+    };
 
-    if (missing.length > 0) {
+    if (Object.values(nextFieldErrors).some(Boolean)) {
       setStatus('error');
       setErrorType('validation');
-      setErrorMissing(missing);
+      setFieldErrors(nextFieldErrors);
       return;
     }
 
     setStatus('sending');
     setErrorType(null);
-    setErrorMissing([]);
+    setFieldErrors({
+      name: false,
+      attending: false,
+      alcohol: false,
+    });
     const formData = new FormData(form);
 
     try {
@@ -53,6 +68,7 @@ function GuestForm({
 
       if (res.ok) {
         setStatus('success');
+        setErrorType(null);
         form.reset();
       } else {
         const data = await res.json().catch(() => ({}));
@@ -67,10 +83,18 @@ function GuestForm({
     }
   };
 
-  const clearErrorOnChange = () => {
-    if (status === 'error') {
-      setStatus(null);
-      setErrorMissing([]);
+  const clearErrorOnChange = (fieldName) => {
+    if (status === 'error' && errorType === 'validation' && fieldErrors[fieldName]) {
+      const nextFieldErrors = {
+        ...fieldErrors,
+        [fieldName]: false,
+      };
+      setFieldErrors(nextFieldErrors);
+
+      if (!Object.values(nextFieldErrors).some(Boolean)) {
+        setStatus(null);
+        setErrorType(null);
+      }
     }
   };
 
@@ -87,27 +111,45 @@ function GuestForm({
         <label className="guest-form__label">
           <span className="guest-form__label-text">Ваше имя (и фамилия) *</span>
           <input
+            id="guest-name"
             type="text"
             name="name"
             className="guest-form__input"
             placeholder="Иван Иванов"
+            required
             disabled={status === 'sending'}
-            onInput={clearErrorOnChange}
+            aria-invalid={fieldErrors.name ? 'true' : 'false'}
+            aria-describedby={fieldErrors.name ? 'guest-name-error' : undefined}
+            onInput={() => clearErrorOnChange('name')}
           />
+          {fieldErrors.name && (
+            <p id="guest-name-error" className="guest-form__field-error">
+              Укажите, пожалуйста, ваше имя.
+            </p>
+          )}
         </label>
 
         <label className="guest-form__label">
           <span className="guest-form__label-text">Придёте на праздник? *</span>
           <select
+            id="guest-attending"
             name="attending"
             className="guest-form__input guest-form__select"
+            required
             disabled={status === 'sending'}
-            onChange={clearErrorOnChange}
+            aria-invalid={fieldErrors.attending ? 'true' : 'false'}
+            aria-describedby={fieldErrors.attending ? 'guest-attending-error' : undefined}
+            onChange={() => clearErrorOnChange('attending')}
           >
             <option value="">Выберите</option>
             <option value="yes">Да, с удовольствием!</option>
             <option value="no">К сожалению, не смогу</option>
           </select>
+          {fieldErrors.attending && (
+            <p id="guest-attending-error" className="guest-form__field-error">
+              Выберите, сможете ли вы прийти.
+            </p>
+          )}
         </label>
 
         <label className="guest-form__label">
@@ -125,14 +167,19 @@ function GuestForm({
 
         <div className="guest-form__label">
           <span className="guest-form__label-text">О предпочтениях алкоголя *</span>
-          <div className="guest-form__checkbox-group" role="group" aria-label="Предпочтения по алкоголю (обязательно)">
+          <div
+            className={`guest-form__checkbox-group ${fieldErrors.alcohol ? 'guest-form__checkbox-group--error' : ''}`}
+            role="group"
+            aria-label="Предпочтения по алкоголю (обязательно)"
+            aria-describedby={fieldErrors.alcohol ? 'guest-alcohol-error' : undefined}
+          >
             {[
-              { value: 'wine', label: 'Игристое' },
-              { value: 'champagne', label: 'Белое вино' },
-              { value: 'beer', label: 'Красное вино' },
-              { value: 'strong', label: 'Водка' },
-              { value: 'cocktails', label: 'Коньяк' },
-              { value: 'none', label: 'Не пью алкоголь' },
+              { value: 'Игристое', label: 'Игристое' },
+              { value: 'Белое вино', label: 'Белое вино' },
+              { value: 'Красное вино', label: 'Красное вино' },
+              { value: 'Водка', label: 'Водка' },
+              { value: 'Коньяк', label: 'Коньяк' },
+              { value: 'Не пью алкоголь', label: 'Не пью алкоголь' },
             ].map(({ value, label }) => (
               <label key={value} className="guest-form__checkbox-wrap">
                 <input
@@ -141,13 +188,18 @@ function GuestForm({
                   value={value}
                   className="guest-form__checkbox"
                   disabled={status === 'sending'}
-                  onChange={clearErrorOnChange}
+                  onChange={() => clearErrorOnChange('alcohol')}
                 />
                 <span className="guest-form__checkbox-box" aria-hidden="true" />
                 <span className="guest-form__checkbox-label">{label}</span>
               </label>
             ))}
           </div>
+          {fieldErrors.alcohol && (
+            <p id="guest-alcohol-error" className="guest-form__field-error">
+              Выберите хотя бы один вариант.
+            </p>
+          )}
         </div>
 
         <label className="guest-form__label">
@@ -162,7 +214,7 @@ function GuestForm({
         </label>
 
         {status === 'success' && (
-          <p className="guest-form__message guest-form__message--success">
+          <p className="guest-form__message guest-form__message--success" role="status" aria-live="polite">
             {successMessage}
           </p>
         )}
@@ -171,6 +223,7 @@ function GuestForm({
           <div
             className="guest-form__message guest-form__message--error"
             role="alert"
+            aria-live="assertive"
           >
             {errorType === 'validation' ? (
               <>

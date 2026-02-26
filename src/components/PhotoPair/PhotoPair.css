@@ -8,22 +8,58 @@
 
 .photo-pair__item {
   position: relative;
+  --pair-transform: none;
+  --photo-card-caption-width: 82%;
+  --photo-card-caption-bottom: 7%;
+  --photo-card-caption-bottom-landscape: 6%;
+  --photo-card-caption-title-size: 18px;
+  --photo-card-caption-title-line-height: 1.28;
+  --photo-card-caption-desc-size: 15px;
+  --photo-card-caption-desc-line-height: 1.3;
+  --photo-card-caption-width-mobile: 72%;
+  --photo-card-caption-bottom-mobile: 8%;
+  --photo-card-caption-bottom-mobile-landscape: 7%;
+  --photo-card-caption-title-size-mobile: clamp(14px, 4vw, 15px);
+  --photo-card-caption-title-line-height-mobile: 1.2;
+  --photo-card-caption-desc-size-mobile: 13px;
+  --photo-card-caption-desc-line-height-mobile: 1.2;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: var(--pair-transform);
 }
 
 .photo-pair__item--left {
-  transform: rotate(-8deg) translateX(-20px);
+  --pair-transform: rotate(-8deg) translateX(-20px);
   z-index: 1;
 }
 
 .photo-pair__item--right {
-  transform: rotate(7deg) translateX(20px);
+  --pair-transform: rotate(7deg) translateX(20px);
   margin-left: -80px;
   z-index: 2;
 }
 
 .photo-pair__item:hover {
-  transform: scale(1.03);
+  transform: var(--pair-transform) translateY(-2px) scale(1.02);
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .photo-pair {
+    padding: 28px 12px;
+  }
+
+  .photo-pair__item {
+    --photo-card-caption-title-size: 17px;
+    --photo-card-caption-desc-size: 14px;
+  }
+
+  .photo-pair__item--left {
+    --pair-transform: rotate(-6deg) translateX(-10px);
+  }
+
+  .photo-pair__item--right {
+    --pair-transform: rotate(5.5deg) translateX(10px);
+    margin-left: -54px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -44,11 +80,11 @@
   }
 
   .photo-pair__item--left {
-    transform: rotate(-6deg) translateX(-8px);
+    --pair-transform: rotate(-6deg) translateX(-8px);
   }
 
   .photo-pair__item--right {
-    transform: rotate(5deg) translateX(8px);
+    --pair-transform: rotate(5deg) translateX(8px);
     margin-left: -32px;
   }
 

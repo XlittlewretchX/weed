@@ -5,11 +5,10 @@
   max-width: 600px;
   margin: 40px auto;
   padding: 32px 24px;
-  background-color: #f5f3ef;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 251, 0.96) 0%, rgba(249, 241, 246, 0.92) 100%);
   border-radius: 16px;
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--color-shadow-soft);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   
@@ -17,9 +16,7 @@
 
 .location-card:hover {
   transform: translateY(-8px);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--color-shadow-soft-hover);
 }
 
 .location-card__title {
@@ -28,12 +25,12 @@
   font-size: 24px;
   font-weight: 600;
   text-align: center;
-  color: #333;
+  color: var(--color-text-primary);
   transition: color 0.3s ease;
 }
 
 .location-card:hover .location-card__title {
-  color: #8b4513;
+  color: var(--color-accent-deep);
 }
 
 .location-card__image-wrapper {
@@ -41,13 +38,13 @@
   margin-bottom: 24px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--color-shadow-image);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .location-card:hover .location-card__image-wrapper {
   transform: scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--color-shadow-image-hover);
 }
 
 .location-card__image {
@@ -67,26 +64,48 @@
   font-size: 16px;
   line-height: 1.5;
   text-align: center;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
 .location-card__link {
   display: inline-block;
-  color: #8b4513;
+  color: var(--color-accent-deep);
   text-decoration: underline;
-  text-decoration-color: rgba(139, 69, 19, 0.3);
+  text-decoration-color: var(--color-accent-line);
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
   padding: 4px 0;
 }
 
 .location-card__link:hover {
-  color: #654321;
-  text-decoration-color: rgba(139, 69, 19, 0.6);
+  color: var(--color-accent-strong);
+  text-decoration-color: var(--color-accent-soft-strong);
 }
 
 .location-card__address-text {
-  color: #333;
+  color: var(--color-text-primary);
   font-weight: 500;
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .location-card {
+    margin: 32px auto;
+    padding: 26px 20px;
+    max-width: min(680px, calc(100% - 28px));
+    border-radius: 14px;
+  }
+
+  .location-card__title {
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .location-card__image-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .location-card__address {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 600px) {

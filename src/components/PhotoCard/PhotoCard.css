@@ -1,20 +1,44 @@
-.photo-card {
-    display: inline-flex;
+.card{
+    display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px;
-    background-color: #f5f3ef;
-    border-radius: 12px;
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.25),
-        0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    --photo-card-caption-width: 68%;
+    --photo-card-caption-top: 74%;
+    --photo-card-caption-top-landscape: 79%;
+    --photo-card-caption-title-size: 16px;
+    --photo-card-caption-title-line-height: 1.22;
+    --photo-card-caption-desc-size: 14px;
+    --photo-card-caption-desc-line-height: 1.25;
+    --photo-card-caption-width-mobile: 66%;
+    --photo-card-caption-top-mobile: 74%;
+    --photo-card-caption-top-mobile-landscape: 79%;
+    --photo-card-caption-title-size-mobile: clamp(13px, 3.8vw, 15px);
+    --photo-card-caption-title-line-height-mobile: 1.18;
+    --photo-card-caption-desc-size-mobile: 12px;
+    --photo-card-caption-desc-line-height-mobile: 1.2;
+    padding: 0;
 }
 
 .photo-card__frame-wrapper {
     position: relative;
     display: inline-block;
+    margin: 0 auto;
 }
-
+.photo-card__frame-wrapper {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .photo-card__frame-wrapper:hover {
+    transform: scale(1.03);
+  }
 .photo-card__frame {
     display: block;
     width: 100%;
@@ -24,21 +48,20 @@
 
 .photo-card__photo {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 37.5%;
+    left: 51%;
     transform: translate(-50%, -50%);
-    width: 70%;
+    width: 85%;
     height: 70%;
     object-fit: cover;
     border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* Стили для горизонтальных фотографий */
 .photo-card--landscape .photo-card__photo {
     object-fit: contain;
     width: 85%;
-    height: 85%;
+    height: 80%;
 }
 
 .photo-card--landscape .photo-card__frame {
@@ -46,25 +69,59 @@
 }
 
 .photo-card__caption {
-    margin-top: 10px;
+    position: absolute;
+    left: 50%;
+    top: var(--photo-card-caption-top);
+    transform: translateX(-50%);
+    margin-top: 0;
+    width: var(--photo-card-caption-width);
+    max-width: var(--photo-card-caption-width);
     text-align: center;
     font-family: inherit;
+    z-index: 2;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-wrap: balance;
 }
 
 .photo-card__title {
-    font-size: 16px;
+    font-size: var(--photo-card-caption-title-size);
     font-weight: 600;
     margin-bottom: 4px;
+    line-height: var(--photo-card-caption-title-line-height);
 }
 
 .photo-card__description {
-    font-size: 14px;
-    color: #555555;
+    font-size: var(--photo-card-caption-desc-size);
+    color: var(--color-text-secondary);
+    line-height: var(--photo-card-caption-desc-line-height);
+}
+
+.photo-card--landscape .photo-card__caption {
+    top: var(--photo-card-caption-top-landscape);
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .photo-card {
+        --photo-card-caption-width: 70%;
+        --photo-card-caption-top: 75%;
+        --photo-card-caption-top-landscape: 79%;
+        --photo-card-caption-title-size: 15px;
+        --photo-card-caption-desc-size: 13px;
+    }
+
+    .photo-card__frame {
+        max-width: 260px;
+    }
+
+    .photo-card--landscape .photo-card__frame {
+        max-width: 360px;
+    }
 }
 
 @media (max-width: 600px) {
     .photo-card {
-        padding: 12px;
+        padding: 0;
     }
 
     .photo-card__frame {
@@ -75,11 +132,33 @@
         max-width: 260px;
     }
 
+    .photo-card__caption {
+        position: absolute;
+        top: var(--photo-card-caption-top-mobile);
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0;
+        width: var(--photo-card-caption-width-mobile);
+        max-width: var(--photo-card-caption-width-mobile);
+        text-align: center;
+        font-family: inherit;
+        z-index: 2;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .photo-card--landscape .photo-card__caption {
+        top: var(--photo-card-caption-top-mobile-landscape);
+    }
+
     .photo-card__title {
-        font-size: 15px;
+        font-size: var(--photo-card-caption-title-size-mobile);
+        line-height: var(--photo-card-caption-title-line-height-mobile);
+        margin: 0;
     }
 
     .photo-card__description {
-        font-size: 13px;
+        font-size: var(--photo-card-caption-desc-size-mobile);
+        line-height: var(--photo-card-caption-desc-line-height-mobile);
     }
 }

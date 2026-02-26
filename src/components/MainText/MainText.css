@@ -5,16 +5,14 @@
   padding: 0 24px;
   text-align: center;
   font-family: inherit;
-  font-size: 48px;
+  font-size: clamp(28px, 8vw, 48px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: clamp(1.1, 1 + 0.2vw, 1.2);
 }
 
 @media (max-width: 600px) {
   .main-text {
     margin: 24px auto 12px;
     padding: 0 16px;
-    font-size: 28px;
-    line-height: 1.2;
   }
 }

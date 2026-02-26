@@ -18,6 +18,8 @@ function LocationCard({
           className="location-card__image"
           src={imageSrc}
           alt={imageAlt}
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="location-card__address">
@@ -28,6 +30,7 @@ function LocationCard({
             target="_blank"
             rel="noopener noreferrer"
             className="location-card__link"
+            aria-label={`Открыть адрес в картах: ${address}`}
           >
             {address}
           </a>
