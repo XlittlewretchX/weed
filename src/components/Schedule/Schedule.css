@@ -33,10 +33,11 @@
 }
 
 .schedule__row {
+  position: relative;
   display: grid;
   grid-template-columns: 112px 1fr;
   gap: 24px;
-  padding: 18px 14px;
+  padding: 18px 88px 18px 14px;
   border-bottom: 1px solid var(--color-border-faint);
   align-items: start;
   border-radius: 12px;
@@ -52,10 +53,24 @@
   transform: translateY(-2px);
 }
 
+.schedule__icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
 .schedule__time {
   font-weight: 600;
   color: var(--color-accent-deep);
   font-size: 20px;
+}
+
+.schedule__event {
+  min-width: 0;
 }
 
 .schedule__event-title {
@@ -87,7 +102,14 @@
   .schedule__row {
     grid-template-columns: 96px 1fr;
     gap: 16px;
-    padding: 16px 10px;
+    padding: 16px 78px 16px 10px;
+  }
+
+  .schedule__icon {
+    top: 12px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
   }
 
   .schedule__time {
@@ -105,7 +127,6 @@
 }
 
 @media (max-width: 600px) {
-
   .schedule {
     margin: 20px 12px;
     padding: 20px 16px;
@@ -125,8 +146,11 @@
   }
 
   .schedule__row {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "time icon"
+      "event event";
+    gap: 12px 12px;
     padding: 16px;
     border: none;
     background: var(--color-surface-elevated);
@@ -140,6 +164,7 @@
   }
 
   .schedule__time {
+    grid-area: time;
     display: inline-block;
     font-size: 18px;
     font-weight: 600;
@@ -148,6 +173,19 @@
     padding: 6px 10px;
     border-radius: 20px;
     width: fit-content;
+  }
+
+  .schedule__icon {
+    position: static;
+    grid-area: icon;
+    justify-self: end;
+    align-self: start;
+    width: 46px;
+    height: 46px;
+  }
+
+  .schedule__event {
+    grid-area: event;
   }
 
   .schedule__event-title {
@@ -159,5 +197,41 @@
     font-size: 18px;
     line-height: 1.5;
     color: var(--color-text-secondary);
+  }
+}
+
+@media (max-width: 420px) {
+  .schedule {
+    margin: 18px 10px;
+    padding: 18px 14px;
+    width: calc(100% - 20px);
+  }
+
+  .schedule__title {
+    font-size: 24px;
+  }
+
+  .schedule__row {
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .schedule__time {
+    font-size: 18px;
+    padding: 5px 9px;
+  }
+
+  .schedule__icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .schedule__event-title {
+    font-size: 20px;
+  }
+
+  .schedule__event-description {
+    font-size: 18px;
+    line-height: 1.45;
   }
 }

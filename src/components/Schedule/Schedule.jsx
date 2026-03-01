@@ -25,6 +25,15 @@ function Schedule({
             delay={90 * index}
           >
             <div className="schedule__row">
+              {item.iconSrc ? (
+                <img
+                  className="schedule__icon"
+                  src={item.iconSrc}
+                  alt={item.iconAlt || ''}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : null}
               <div className="schedule__time">
                 {item.time}
               </div>
