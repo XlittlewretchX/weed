@@ -12,18 +12,18 @@
     --photo-card-caption-width: 68%;
     --photo-card-caption-top: 74%;
     --photo-card-caption-top-landscape: 79%;
-    --photo-card-caption-title-size: 16px;
+    --photo-card-caption-title-size: 20px;
     --photo-card-caption-title-line-height: 1.22;
-    --photo-card-caption-desc-size: 14px;
+    --photo-card-caption-desc-size: 18px;
     --photo-card-caption-desc-line-height: 1.25;
     --photo-card-caption-width-mobile: 66%;
     --photo-card-caption-top-mobile: 74%;
     --photo-card-caption-top-mobile-landscape: 79%;
-    --photo-card-caption-title-size-mobile: clamp(13px, 3.8vw, 15px);
+    --photo-card-caption-title-size-mobile: clamp(18px, 3.8vw, 22px);
     --photo-card-caption-title-line-height-mobile: 1.18;
-    --photo-card-caption-desc-size-mobile: 12px;
+    --photo-card-caption-desc-size-mobile: 16px;
     --photo-card-caption-desc-line-height-mobile: 1.2;
-    padding: 0;
+    padding: 50px 0;
 }
 
 .photo-card__frame-wrapper {
@@ -106,8 +106,8 @@
         --photo-card-caption-width: 70%;
         --photo-card-caption-top: 75%;
         --photo-card-caption-top-landscape: 79%;
-        --photo-card-caption-title-size: 15px;
-        --photo-card-caption-desc-size: 13px;
+        --photo-card-caption-title-size: 20px;
+        --photo-card-caption-desc-size: 16px;
     }
 
     .photo-card__frame {
@@ -121,14 +121,22 @@
 
 @media (max-width: 600px) {
     .photo-card {
-        padding: 0;
+        padding: 30px 0;
     }
 
     .photo-card__frame {
-        max-width: 200px;
+        max-width: min(300px, calc(100vw - 40px));
     }
 
     .photo-card--landscape .photo-card__frame {
+        max-width: min(360px, calc(100vw - 32px));
+    }
+
+    .photo-pair__item .photo-card__frame {
+        max-width: 200px;
+    }
+
+    .photo-pair__item .photo-card--landscape .photo-card__frame {
         max-width: 260px;
     }
 

@@ -87,7 +87,7 @@ function App() {
         </ScrollReveal>
         <ScrollReveal direction="right" delay={80} duration={820} distance={104}>
           <PhotoCard
-            photoSrc={`${publicUrl}/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg`}
+            photoSrc={`${publicUrl}/image/IMG_4971.JPEG`}
             photoAlt="Совместное фото"
             title={
               <>
@@ -131,7 +131,7 @@ function App() {
           <PhotoSingle
             photo={{
               src: `${publicUrl}/image/color.jpg`,
-              alt: "Календарь",
+              alt: "Цветовая палитра",
             }}
             withFrame={false}
           />
@@ -153,23 +153,21 @@ function App() {
           <Text text="Пожалуйста, заполните анкету — так нам будет проще организовать праздник." />
           <GuestForm
             action="https://formspree.io/f/mgolynyr"
-            title="Анкета гостя"
             submitLabel="Отправить"
-          />
-        </ScrollReveal>
-        <ScrollReveal direction="left" cascade cascadeStep={120} delay={30} duration={820} distance={88}>
-          <MainText text="Будем вас ждать!" />
-          <PhotoCard
-            photoSrc={`${publicUrl}/image/08F4FBAD-7F63-4884-AE9B-BBA1BCF6570D.jpeg`}
-            photoAlt="Совместное фото"
-            title="С любовью!"
-            description="Миша и Лера"
           />
         </ScrollReveal>
         <ScrollReveal direction="top" cascade cascadeStep={110} delay={20} duration={780} distance={72}>
           <MainText text="Праздник любви через:" />
           <CountdownTimer />
-          <Text text="С любовью Лера и Миша" />
+        </ScrollReveal>
+        <ScrollReveal direction="left" cascade cascadeStep={120} delay={30} duration={820} distance={88}>
+          <MainText text="Будем вас ждать!" />
+          <PhotoCard
+            photoSrc={`${publicUrl}/image/IMG_4970.JPEG`}
+            photoAlt="Совместное фото"
+            title="С любовью!"
+            description="Миша и Лера"
+          />
         </ScrollReveal>
       </div>
     </div>

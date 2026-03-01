@@ -20,7 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 100%;
+  max-width: 45%;
   width: 100%;
 }
 
@@ -50,6 +50,12 @@
   color: var(--color-text-secondary);
 }
 
+@media (min-width: 601px) and (max-width: 951px) {
+  .photo-single__simple {
+    max-width: 75%;
+  }
+}
+
 @media (max-width: 600px) {
   .photo-single {
     padding: 24px 12px;
@@ -67,5 +73,8 @@
   .photo-single__description {
     font-size: 14px;
     line-height: 1.4;
+  }
+  .photo-single__simple {
+    max-width: 90%;
   }
 }

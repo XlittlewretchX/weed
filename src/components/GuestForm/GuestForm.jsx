@@ -3,7 +3,6 @@ import "./GuestForm.css";
 
 function GuestForm({
   action,
-  title = "Анкета гостя",
   submitLabel = "Отправить",
   successMessage = "Спасибо! Ваш ответ принят.",
   errorMessage = "Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram.",
@@ -114,8 +113,6 @@ function GuestForm({
         action={action}
         method="POST"
       >
-        <h2 className="guest-form__title">{title}</h2>
-
         <label className="guest-form__label">
           <span className="guest-form__label-text">Ваше имя (и фамилия) *</span>
           <input
