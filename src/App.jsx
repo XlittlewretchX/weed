@@ -73,13 +73,6 @@ function App() {
             }}
           />
         </ScrollReveal>
-        <ScrollReveal direction="left" delay={70} duration={860} distance={96}>
-          <PlusText
-            line1="Лера + Миша"
-            line2="="
-            heartSrc={`${publicUrl}/image/heart.png`}
-          />
-        </ScrollReveal>
         <ScrollReveal cascade cascadeStep={120} delay={40} duration={780} distance={56}>
           <MainText text="Узнали?" />
           <Text text="Время пронеслось незаметно и у этих двух милых деток скоро свадьба!" />
@@ -91,9 +84,9 @@ function App() {
             photoAlt="Совместное фото"
             title={
               <>
-                Когда-то мы мечтали о будущем.
+                Эксперимент затянулся… 
                 <br />
-                Теперь мы строим его вместе.
+                решили оформить официально
               </>
             }
           />
@@ -139,12 +132,12 @@ function App() {
         <ScrollReveal direction="left" cascade cascadeStep={130} distance={72}>
           <MainText text="Чат гостей" />
           <Text
-            text="Мы создали Telegram-чат,
+            text="Мы создали чат ВКонтакте,
             где будем собирать все фотографии и видео с праздника,
             а также формировать наш общий плейлист для танцев!
             Присоединяйтесь по ссылке:"
           />
-          <TelegramButton href="https://t.me/your_chat">
+          <TelegramButton href="https://vk.me/join/82sbQLOgIYAoudF5T3wnmgNskM6skz3Z2vM=">
             Вступить в чат
           </TelegramButton>
         </ScrollReveal>
